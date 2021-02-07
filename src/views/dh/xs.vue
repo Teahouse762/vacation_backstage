@@ -36,7 +36,7 @@
         label="状态">
          <template slot-scope="scope">
            <div class="item_button">
-              <div> 
+              <div @click="setStatus"> 
                 {{scope.row.status | type1 }} 
               </div>
               <button @click="onupAndDown(scope.row)">{{scope.row.status | type2}}</button>
@@ -103,6 +103,9 @@ export default {
     },
 
   methods:{
+    setStatus(){
+      
+    },
     async shangList(){
       const res = await shang(
         `/api/product/list.do?pageNum=${this.list.pageNum}`

@@ -4,44 +4,30 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-  const routes = [
-    {
-      path:"/",
-      redirect:"/dl"
-    },
+const routes = [
   {
     path: '/home',
     name: 'Home',
     component: Home,
-    children:[{
-      path:"xs",
-      name:"xs",
-      component: () => import('../views/dh/xs.vue')
-    },{
-      path:"js",
-      name:"js",
-      component: () => import('../views/dh/js.vue')
-    },{
-      path:"zj",
-      name:"jiaoshi",
-      component: () => import('../views/dh/jiaoshi.vue')
-    }]
+    children:[
+      {
+        path:"/goods",
+        name:"goods",
+        component:()=>import ("views/home/goods")
+      }
+    ]
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
-  },{
-    path:'/dl',
-    name:'dl',
-    component: () => import('../views/dl.vue')
+    path:"/",
+    name:"login",
+    component:()=>import("views/Login")
   }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
   routes
 })
-
+router.beforeEach((to, from, next) => {
+  next()
+})
 export default router
